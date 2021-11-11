@@ -124,8 +124,7 @@ class ExampleApp extends StatelessWidget {
   _openDatePicker(BuildContext context) {
     BottomPicker.date(
             title: "Set your Birthday",
-            titleStyle: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 15, color: Colors.blue),
+            titleStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.blue),
             onChange: (index) {
               print(index);
             },
@@ -139,10 +138,7 @@ class ExampleApp extends StatelessWidget {
   _openTimePicker(BuildContext context) {
     BottomPicker.time(
             title: "Set your next meeting time",
-            titleStyle: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-                color: Colors.orange),
+            titleStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.orange),
             onSubmit: (index) {
               print(index);
             },
@@ -157,8 +153,7 @@ class ExampleApp extends StatelessWidget {
   _openDateTimePicker(BuildContext context) {
     BottomPicker.dateTime(
         title: "Set the event exact time and date",
-        titleStyle: TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
+        titleStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
         onSubmit: (date) {
           print(date);
         },
@@ -174,8 +169,7 @@ class ExampleApp extends StatelessWidget {
   _openDateTimePickerWithCustomButton(BuildContext context) {
     BottomPicker.dateTime(
         title: "Set the event exact time and date",
-        titleStyle: TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
+        titleStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
         onSubmit: (date) {
           print(date);
         },

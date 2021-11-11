@@ -61,22 +61,19 @@ class BottomPicker extends StatefulWidget {
       this.buttonText,
       this.buttonTextStyle,
       this.displayButtonIcon = true,
-      this.buttonSingleColor}) {
+      this.buttonSingleColor})
+      : this.selectedItemIndex = 0 {
     this.datePickerMode = CupertinoDatePickerMode.date;
     this.bottomPickerType = BOTTOM_PICKER_TYPE.DATETIME;
     this.use24hFormat = false;
     if (this.minDateTime != null && this.maxDateTime != null) {
       assert(this.minDateTime!.isBefore(this.maxDateTime!));
     }
-    if (this.maxDateTime != null &&
-        this.initialDateTime == null &&
-        DateTime.now().isAfter(this.maxDateTime!)) {
+    if (this.maxDateTime != null && this.initialDateTime == null && DateTime.now().isAfter(this.maxDateTime!)) {
       this.initialDateTime = this.maxDateTime;
     }
 
-    if (this.minDateTime != null &&
-        this.initialDateTime == null &&
-        DateTime.now().isBefore(this.minDateTime!)) {
+    if (this.minDateTime != null && this.initialDateTime == null && DateTime.now().isBefore(this.minDateTime!)) {
       this.initialDateTime = this.minDateTime;
     }
   }
@@ -106,15 +103,11 @@ class BottomPicker extends StatefulWidget {
       assert(this.minDateTime!.isBefore(this.maxDateTime!));
     }
 
-    if (this.maxDateTime != null &&
-        this.initialDateTime == null &&
-        DateTime.now().isAfter(this.maxDateTime!)) {
+    if (this.maxDateTime != null && this.initialDateTime == null && DateTime.now().isAfter(this.maxDateTime!)) {
       this.initialDateTime = this.maxDateTime;
     }
 
-    if (this.minDateTime != null &&
-        this.initialDateTime == null &&
-        DateTime.now().isBefore(this.minDateTime!)) {
+    if (this.minDateTime != null && this.initialDateTime == null && DateTime.now().isBefore(this.minDateTime!)) {
       this.initialDateTime = this.minDateTime;
     }
   }
@@ -144,15 +137,11 @@ class BottomPicker extends StatefulWidget {
       assert(this.minDateTime!.isBefore(this.maxDateTime!));
     }
 
-    if (this.maxDateTime != null &&
-        this.initialDateTime == null &&
-        DateTime.now().isAfter(this.maxDateTime!)) {
+    if (this.maxDateTime != null && this.initialDateTime == null && DateTime.now().isAfter(this.maxDateTime!)) {
       this.initialDateTime = this.maxDateTime;
     }
 
-    if (this.minDateTime != null &&
-        this.initialDateTime == null &&
-        DateTime.now().isBefore(this.minDateTime!)) {
+    if (this.minDateTime != null && this.initialDateTime == null && DateTime.now().isBefore(this.minDateTime!)) {
       this.initialDateTime = this.minDateTime;
     }
   }
@@ -223,7 +212,7 @@ class BottomPicker extends StatefulWidget {
   ///otherwise an exception will be thrown
   ///for date and time picker type this parameter is not available
   ///
-  late int selectedItemIndex;
+  final int selectedItemIndex;
 
   ///The initial date time applied on the date and time picker
   ///by default it's null
@@ -293,7 +282,7 @@ class _BottomPickerState extends State<BottomPicker> {
   void initState() {
     super.initState();
     this.selectedItemIndex = widget.selectedItemIndex;
-    this.selectedDateTime = DateTime.now();
+    this.selectedDateTime = widget.initialDateTime ?? DateTime.now();
   }
 
   @override
@@ -306,8 +295,7 @@ class _BottomPickerState extends State<BottomPicker> {
       width: double.infinity,
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20), topLeft: Radius.circular(20))),
+          borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20))),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -318,9 +306,7 @@ class _BottomPickerState extends State<BottomPicker> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(this.widget.title, style: this.widget.titleStyle),
-                  InkWell(
-                      onTap: _closeBottomPicker,
-                      child: Icon(Icons.close, color: Colors.black, size: 20))
+                  InkWell(onTap: _closeBottomPicker, child: Icon(Icons.close, color: Colors.black, size: 20))
                 ],
               ),
             ),
@@ -333,8 +319,7 @@ class _BottomPickerState extends State<BottomPicker> {
               children: [
                 BottomPickerButton(
                     onClick: () {
-                      if (this.widget.bottomPickerType ==
-                          BOTTOM_PICKER_TYPE.SIMPLE) {
+                      if (this.widget.bottomPickerType == BOTTOM_PICKER_TYPE.SIMPLE) {
                         this.widget.onSubmit?.call(this.selectedItemIndex);
                       } else {
                         this.widget.onSubmit?.call(this.selectedDateTime);
@@ -358,8 +343,7 @@ class _BottomPickerState extends State<BottomPicker> {
   Widget _renderSimplePicker() {
     return CupertinoPicker(
         itemExtent: 35,
-        scrollController: FixedExtentScrollController(
-            initialItem: this.widget.selectedItemIndex),
+        scrollController: FixedExtentScrollController(initialItem: this.widget.selectedItemIndex),
         onSelectedItemChanged: (int index) {
           this.selectedItemIndex = index;
           this.widget.onChange?.call(index);
